@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-""" Application de la Flask """
+"""
+Flask app
+"""
 from flask import (
     Flask,
     render_template,
@@ -14,7 +16,9 @@ from typing import (
 
 
 class Config(object):
-    """ Babel configuration """
+    """
+    Configuration for Babel
+    """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -35,9 +39,7 @@ users = {
 
 def get_user() -> Union[Dict, None]:
     """
-    Returns; 
-    a user dictionary or 
-    None if ID value can't be found
+    Returns a user dictionary or None if ID value can't be found
     or if 'login_as' URL parameter was not found
     """
     id = request.args.get('login_as', None)
@@ -58,7 +60,7 @@ def before_request():
 @babel.localeselector
 def get_locale():
     """
-    Select and return best language match from the supported languages
+    Select and return best language match based on supported languages
     """
     loc = request.args.get('locale')
     if loc in app.config['LANGUAGES']:
